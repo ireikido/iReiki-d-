@@ -19,86 +19,65 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* Selector de Idioma Minimalista */
+        /* Selector de Idioma */
         .lang-picker {
             position: absolute; top: 30px; right: 40px;
             font-size: 0.7rem; letter-spacing: 2px; z-index: 100;
         }
         .lang-btn {
             cursor: pointer; color: var(--color-texto);
-            opacity: 0.4; transition: all 0.3s;
-            margin-left: 15px;
+            opacity: 0.4; transition: 0.3s; margin-left: 15px;
         }
-        .lang-btn.active { opacity: 1; font-weight: bold; border-bottom: 1px solid var(--color-acento); }
+        .lang-btn.active { opacity: 1; font-weight: bold; }
 
         .templo-central {
             position: relative; display: flex; flex-direction: column;
             align-items: center; justify-content: center; z-index: 10;
-            text-align: center;
         }
 
-        /* EFECTO REVELADO ORGÁNICO SUMI-E (NUEVO) */
+        /* RESPIRACIÓN DEL LOGO (Efecto Zen) */
         .logo-container {
             max-width: 420px; width: 65vw;
             position: relative; cursor: pointer;
-            overflow: hidden;
-        }
-        .logo-zen {
-            width: 100%; height: auto;
-            opacity: 0;
-            /* Máscara radial que se expande desde el centro */
-            mask-image: radial-gradient(circle, black 0%, transparent 10%);
-            -webkit-mask-image: radial-gradient(circle, black 0%, transparent 10%);
-            mask-size: 0% 0%;
-            -webkit-mask-size: 0% 0%;
-            mask-repeat: no-repeat;
-            -webkit-mask-repeat: no-repeat;
-            mask-position: center;
-            -webkit-mask-position: center;
-            transition: opacity 1.5s ease, -webkit-mask-size 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+            animation: breathe-logo 8s infinite ease-in-out;
         }
         
-        body.loaded .logo-zen {
-            opacity: 1;
-            mask-size: 300% 300%;
-            -webkit-mask-size: 300% 300%;
+        @keyframes breathe-logo {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(0,0,0,0)); }
+            50% { transform: scale(1.02); filter: drop-shadow(0 0 15px rgba(140, 122, 91, 0.15)); }
         }
+
+        .logo-zen { width: 100%; height: auto; display: block; }
 
         h1 {
             color: var(--color-texto); font-weight: 300;
             letter-spacing: 12px; text-transform: uppercase;
-            font-size: 1.4rem; margin-top: 35px;
+            font-size: 1.4rem; margin-top: 35px; text-align: center;
         }
 
-        /* El Concepto de Mi Camino Vívido (Actualizado) */
         .concepto-camino {
-            font-size: 1rem; /* Más grande */
-            color: var(--color-acento);
-            letter-spacing: 3px;
-            margin-top: 10px; opacity: 0;
-            transition: opacity 2s ease 1s;
+            font-size: 0.95rem; color: var(--color-acento);
+            letter-spacing: 2px; margin-top: 8px;
+            font-style: normal; opacity: 0.7;
         }
-        body.loaded .concepto-camino { opacity: 0.8; }
 
-        /* Chakras Revelados */
+        /* Chakras (Aparecen al pasar el ratón) */
         .chakras-revelados {
-            display: flex; gap: 20px; margin-top: 50px;
+            display: flex; gap: 20px; margin-top: 45px;
             opacity: 0; transform: translateY(10px);
-            transition: all 0.8s ease 1.5s; pointer-events: none;
+            transition: all 0.8s ease; pointer-events: none;
         }
-
         .templo-central:hover .chakras-revelados {
             opacity: 1; transform: translateY(0); pointer-events: auto;
         }
 
         .chakra-item { position: relative; display: flex; flex-direction: column; align-items: center; }
-        .chakra-dot { width: 52px; transition: all 0.4s ease; filter: grayscale(100%); opacity: 0.5; }
+        .chakra-dot { width: 50px; transition: 0.4s; filter: grayscale(100%); opacity: 0.4; }
         .chakra-label {
             position: absolute; top: -30px; font-size: 0.6rem;
             color: var(--color-acento); letter-spacing: 2px;
-            text-transform: uppercase; opacity: 0; transition: all 0.3s ease;
+            text-transform: uppercase; opacity: 0; transition: 0.3s;
         }
-
         .chakra-item:hover .chakra-dot { transform: scale(1.2); filter: grayscale(0%); opacity: 1; }
         .chakra-item:hover .chakra-label { opacity: 1; top: -40px; }
 
@@ -109,7 +88,7 @@
         }
     </style>
 </head>
-<body class="loading">
+<body>
 
     <div class="lang-picker">
         <span class="lang-btn active" onclick="changeLang('es')">ES</span>
@@ -119,11 +98,11 @@
 
     <div class="templo-central">
         <div class="logo-container">
-            <img src="2.png" alt="iReiki-do Logo" class="logo-zen">
+            <img src="2.png" alt="iReiki-do" class="logo-zen">
         </div>
 
         <h1 id="welcome-text">Bienvenida/o a tu Templo</h1>
-        <p class="concepto-camino" id="camino-text">iReiki-dō: Mi Camino Vívido de Reiki</p>
+        <p class="concepto-camino" id="camino-text">iReiki-dō: El Reiki en mi camino</p>
 
         <div class="chakras-revelados">
             <div class="chakra-item"><span class="chakra-label" data-es="Raíz" data-en="Root" data-fr="Racine">Raíz</span><img src="11.png" class="chakra-dot"></div>
@@ -139,15 +118,10 @@
     <footer>IREIKI-DŌ &bull; 2026</footer>
 
     <script>
-        // Iniciar animación al cargar
-        window.addEventListener('load', () => {
-            setTimeout(() => { document.body.classList.add('loaded'); }, 300);
-        });
-
         const translations = {
-            es: { welcome: "Bienvenida/o a tu Templo", camino: "iReiki-dō: Mi Camino Vívido de Reiki" },
-            en: { welcome: "Welcome to your Temple", camino: "iReiki-dō: My Living Reiki Path" },
-            fr: { welcome: "Bienvenue dans votre Temple", camino: "iReiki-dō: Mon Chemin Reiki Vivant" }
+            es: { welcome: "Bienvenida/o a tu Templo", camino: "iReiki-dō: El Reiki en mi camino" },
+            en: { welcome: "Welcome to your Temple", camino: "iReiki-dō: Reiki on my path" },
+            fr: { welcome: "Bienvenue dans votre Temple", camino: "iReiki-dō: Le Reiki sur mon chemin" }
         };
 
         function changeLang(lang) {

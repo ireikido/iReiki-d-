@@ -6,57 +6,38 @@
     <title>iReiki-dō | Templo de Bienestar</title>
     <style>
         :root {
-            /* Colores extraídos de vuestra paleta zen */
-            --color-aura1: rgba(212, 175, 55, 0.1); /* Oro suave */
-            --color-aura2: rgba(181, 147, 91, 0.1); /* Arena */
-            --color-aura3: rgba(255, 255, 255, 0.8); /* Luz pura */
+            --color-aura1: rgba(212, 175, 55, 0.15); 
+            --color-aura2: rgba(181, 147, 91, 0.2); 
         }
 
         body {
             margin: 0;
             padding: 0;
-            background-color: #fdfaf6;
+            background-color: #fcf9f2; /* Un tono más arena de base */
             color: #4a4a4a;
             font-family: 'Georgia', serif;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            overflow-x: hidden;
+            height: 100vh;
+            overflow: hidden;
             position: relative;
         }
 
-        /* Luces de energía más sutiles y armónicas */
+        /* Luces más presentes */
         .aura {
             position: absolute;
-            width: 80vw;
-            height: 80vw;
-            border-radius: 50%;
-            filter: blur(120px);
+            width: 100vw;
+            height: 100vh;
+            filter: blur(100px);
             z-index: -1;
-            animation: move 25s infinite alternate ease-in-out;
+            animation: move 20s infinite alternate ease-in-out;
         }
-        .aura-1 { background: var(--color-aura1); top: -20%; left: -10%; }
-        .aura-2 { background: var(--color-aura2); bottom: -20%; right: -10%; animation-delay: -7s; }
+        .aura-1 { background: var(--color-aura1); top: -10%; left: -10%; }
+        .aura-2 { background: var(--color-aura2); bottom: -10%; right: -10%; animation-delay: -5s; }
 
         @keyframes move {
-            from { transform: translate(0, 0) rotate(0deg); }
-            to { transform: translate(150px, 50px) rotate(30deg); }
-        }
-
-        header {
-            padding: 80px 20px 40px 20px;
-            text-align: center;
-        }
-
-        .logo-principal {
-            max-width: 300px;
-            height: auto;
-            animation: breathe 8s infinite ease-in-out;
-        }
-
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(181, 147, 91, 0.1)); }
-            50% { transform: scale(1.02); filter: drop-shadow(0 0 15px rgba(181, 147, 91, 0.2)); }
+            from { transform: scale(1) translate(0, 0); }
+            to { transform: scale(1.1) translate(50px, 50px); }
         }
 
         main {
@@ -64,25 +45,37 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            padding: 0 20px;
-            z-index: 1;
+            justify-content: center; /* Todo al centro */
+            text-align: center;
+            padding: 20px;
+        }
+
+        .logo-principal {
+            max-width: 450px; /* Tamaño imponente */
+            width: 80%;
+            height: auto;
+            margin-bottom: 20px;
+            animation: breathe 8s infinite ease-in-out;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(181, 147, 91, 0.1)); }
+            50% { transform: scale(1.04); filter: drop-shadow(0 0 25px rgba(181, 147, 91, 0.3)); }
         }
 
         h1 {
             color: #b5935b;
             font-weight: 300;
-            letter-spacing: 6px;
+            letter-spacing: 10px; /* Más aire entre letras para lujo */
             text-transform: uppercase;
-            font-size: 1.2rem;
-            margin-top: 20px;
+            font-size: 1.8rem; /* Más grande */
+            margin: 40px 0;
         }
 
-        /* Recuperamos los 7 chakras con etiquetas */
         .chakras-nav {
             display: flex;
-            gap: 15px;
-            margin-top: 60px;
+            gap: 25px; /* Más separación */
+            margin-top: 20px;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -95,38 +88,46 @@
         }
 
         .chakra-dot {
-            width: 40px;
+            width: 60px; /* Mucho más grandes y visibles */
             height: auto;
-            transition: all 0.4s ease;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
         }
 
         .chakra-label {
             position: absolute;
-            bottom: -35px;
-            font-size: 0.6rem;
+            bottom: -40px;
+            font-size: 0.7rem;
             color: #b5935b;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             opacity: 0;
-            transition: opacity 0.3s;
-            white-space: nowrap;
+            transition: all 0.3s;
         }
 
         .chakra-container:hover .chakra-dot {
-            transform: translateY(-8px) scale(1.15);
+            transform: translateY(-15px) scale(1.3);
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
         }
 
         .chakra-container:hover .chakra-label {
             opacity: 1;
+            bottom: -30px;
         }
 
         footer {
-            padding: 40px;
-            font-size: 0.7rem;
+            padding: 30px;
+            font-size: 0.8rem;
             color: #b5935b;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-align: center;
+        }
+
+        /* Ajuste para móviles */
+        @media (max-width: 600px) {
+            .logo-principal { max-width: 280px; }
+            h1 { font-size: 1.2rem; letter-spacing: 5px; }
+            .chakra-dot { width: 45px; }
         }
     </style>
 </head>
@@ -135,11 +136,9 @@
     <div class="aura aura-1"></div>
     <div class="aura aura-2"></div>
 
-    <header>
-        <img src="3.png" alt="iReiki-do Logo" class="logo-principal">
-    </header>
-
     <main>
+        <img src="3.png" alt="iReiki-do Logo" class="logo-principal">
+        
         <h1>Bienvenida/o al Templo</h1>
         
         <div class="chakras-nav">
@@ -163,9 +162,9 @@
                 <img src="15.png" class="chakra-dot">
                 <span class="chakra-label">Alquimia</span>
             </div>
-            <div class="chakra-container)
+            <div class="chakra-container">
                 <img src="16.png" class="chakra-dot">
-                <span class="chakra-label">Tercer Ojo</span>
+                <span class="chakra-label">Visión</span>
             </div>
             <div class="chakra-container">
                 <img src="17.png" class="chakra-dot">

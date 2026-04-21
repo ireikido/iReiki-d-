@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iReiki-dō | Tu Templo de Bienestar</title>
+    <title>iReiki-dō | Tu Templo & tu Camino</title>
     <style>
         :root {
-            /* Colores para un contraste Zen Perfecto */
             --color-lino: #fcf9f2; 
-            --color-aura: rgba(140, 122, 91, 0.1); /* Sombra de tierra muy suave */
-            --color-texto: #2c2c2c; /* Negro suave, no puro */
-            --color-acento: #8c7a5b; /* Ocre para detalles */
+            --color-aura-sutil: rgba(140, 122, 91, 0.08); 
+            --color-texto: #2c2c2c; 
+            --color-acento: #8c7a5b; 
         }
 
         body, html {
@@ -33,48 +32,69 @@
         }
         .lang-btn.active { opacity: 1; font-weight: bold; border-bottom: 1px solid var(--color-acento); }
 
-        /* Aura de fondo (Efecto humo de incienso) */
+        /* Aura de fondo (Incienso Zen) */
         .aura {
             position: absolute; width: 100vw; height: 100vh;
-            background: radial-gradient(circle at center, white 0%, var(--color-aura) 60%, transparent 100%);
-            filter: blur(80px); z-index: -1;
-            animation: pulse-bg 15s infinite alternate ease-in-out;
+            background: radial-gradient(circle at center, white 0%, var(--color-aura-sutil) 60%, transparent 100%);
+            filter: blur(60px); z-index: -1;
+            opacity: 0.6;
         }
-
-        @keyframes pulse-bg { from { opacity: 0.3; } to { opacity: 0.6; } }
 
         .templo-central {
             position: relative; display: flex; flex-direction: column;
             align-items: center; justify-content: center; z-index: 10;
         }
 
-        /* Logo Negro (Archivo 5.png) */
-        .logo-trigger {
-            max-width: 400px; width: 60vw; cursor: pointer;
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: drop-shadow(0 0 2px rgba(0,0,0,0.05));
+        /* Contenedor del Logo con Máscara para simular el pincel (Sumi-e) */
+        .logo-container {
+            max-width: 400px; width: 60vw;
+            position: relative; cursor: pointer;
+            overflow: hidden; /* Clave para el efecto */
         }
+        .logo-negro {
+            width: 100%; height: auto;
+            transform: scale(0.9); opacity: 0;
+            transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 1s ease;
+        }
+        
+        /* El "pincel" que revela el logo */
+        .logo-brush {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--color-lino); /* Pinta encima del logo */
+            transition: transform 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 5;
+        }
+
+        /* Al cargar, revelamos el logo */
+        body.loaded .logo-negro { transform: scale(1); opacity: 1; }
+        body.loaded .logo-brush { transform: translateX(100%); }
 
         h1 {
             color: var(--color-texto); font-weight: 300;
             letter-spacing: 12px; text-transform: uppercase;
             font-size: 1.3rem; margin-top: 30px; text-align: center;
-            opacity: 0.9;
         }
 
+        /* El Concepto del Caminante (Significado) */
+        .concepto-subtle {
+            font-size: 0.8rem; color: var(--color-acento);
+            font-style: italic; letter-spacing: 1.5px;
+            margin-top: 10px; text-align: center;
+            opacity: 0.7; max-width: 300px;
+        }
+
+        /* Chakras Revelados (Mantienen el efecto) */
         .chakras-revelados {
             display: flex; gap: 20px; margin-top: 40px;
             opacity: 0; transform: translateY(10px);
-            transition: all 0.8s ease; pointer-events: none;
+            transition: all 0.8s ease 1s; /* Un ligero retraso para que acabe el pincel */
+            pointer-events: none;
         }
 
         .templo-central:hover .chakras-revelados {
             opacity: 1; transform: translateY(0); pointer-events: auto;
         }
-
-        .templo-central:hover .logo-trigger {
-            transform: scale(0.92); opacity: 0.8;
-        }
+        .templo-central:hover .logo-container { opacity: 0.8; }
 
         .chakra-item { position: relative; display: flex; flex-direction: column; align-items: center; }
         .chakra-dot { width: 48px; transition: all 0.4s ease; cursor: pointer; filter: grayscale(40%); }
@@ -94,7 +114,7 @@
         }
     </style>
 </head>
-<body>
+<body class="loading">
 
     <div class="lang-picker">
         <span class="lang-btn active" onclick="changeLang('es')">ES</span>
@@ -105,8 +125,13 @@
     <div class="aura"></div>
 
     <div class="templo-central">
-        <img src="5.png" alt="iReiki-do Logo" class="logo-trigger">
+        <div class="logo-container">
+            <img src="5.png" alt="iReiki-do Logo" class="logo-negro">
+            <div class="logo-brush"></div> </div>
+
         <h1 id="welcome-text">Bienvenida/o a tu Templo</h1>
+        
+        <p class="concepto-subtle" id="concepto-text">Un espacio para crear *Mi Camino del Reiki*</p>
 
         <div class="chakras-revelados">
             <div class="chakra-item"><span class="chakra-label" data-es="Raíz" data-en="Root" data-fr="Racine">Raíz</span><img src="11.png" class="chakra-dot"></div>
@@ -119,17 +144,24 @@
         </div>
     </div>
 
-    <footer>IREIKI-DŌ &bull; EST. 2026</footer>
+    <footer>IREIKI-DŌ &bull; Mi Camino &bull; EST. 2026</footer>
 
     <script>
+        // Efecto Pincel (Cargar al inicio)
+        window.addEventListener('load', () => {
+            document.body.classList.remove('loading');
+            document.body.classList.add('loaded');
+        });
+
         const texts = {
-            es: "Bienvenida/o a tu Templo",
-            en: "Welcome to your Temple",
-            fr: "Bienvenue dans votre Temple"
+            es: ["Bienvenida/o a tu Templo", "Un espacio para crear *Mi Camino del Reiki*"],
+            en: ["Welcome to your Temple", "A space to create *My Reiki Path*"],
+            fr: ["Bienvenue dans votre Temple", "Un espace pour créer *Mon Chemin Reiki*"]
         };
 
         function changeLang(lang) {
-            document.getElementById('welcome-text').innerText = texts[lang];
+            document.getElementById('welcome-text').innerText = texts[lang][0];
+            document.getElementById('concepto-text').innerText = texts[lang][1];
             document.querySelectorAll('.chakra-label').forEach(label => {
                 label.innerText = label.getAttribute(`data-${lang}`);
             });

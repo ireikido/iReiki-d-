@@ -8,24 +8,20 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #fdfaf6; /* Crema suave */
-            color: #4a4a4a;
+            background-color: #ffffff; /* Fondo blanco para disimular los logos actuales */
+            color: #333;
             font-family: 'Georgia', serif;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
         header {
-            padding: 40px 20px;
+            padding: 60px 20px 20px 20px;
             text-align: center;
         }
         .logo-principal {
-            max-width: 250px; /* Tamaño del logo dorado */
+            max-width: 220px;
             height: auto;
-            transition: transform 0.5s ease;
-        }
-        .logo-principal:hover {
-            transform: scale(1.05); /* Sutil movimiento al pasar el ratón */
         }
         main {
             flex: 1;
@@ -36,50 +32,50 @@
             padding: 0 20px;
         }
         .templo-box {
-            border: 1px solid #d4af37; /* Borde dorado */
-            padding: 40px;
-            background-color: white;
-            box-shadow: 0 15px 35px rgba(181, 147, 91, 0.1);
-            max-width: 500px;
+            max-width: 600px;
             text-align: center;
         }
         h1 {
             color: #b5935b;
             font-weight: 300;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
             text-transform: uppercase;
-            margin: 20px 0;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
         }
         p {
             font-style: italic;
             font-size: 1.1rem;
-            color: #777;
-            margin-bottom: 30px;
+            color: #666;
+            line-height: 1.8;
+            max-width: 450px;
+            margin: 0 auto 40px auto;
         }
         .chakras-nav {
             display: flex;
-            gap: 15px;
-            margin-top: 40px;
-            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
             justify-content: center;
+            flex-wrap: wrap;
         }
         .chakra-dot {
-            width: 35px;
+            width: 30px;
             height: auto;
-            opacity: 0.6;
-            transition: opacity 0.3s;
+            filter: grayscale(20%); /* Un toque sutil para que no brillen demasiado */
+            transition: all 0.3s ease;
             cursor: pointer;
         }
         .chakra-dot:hover {
-            opacity: 1;
+            filter: grayscale(0%);
+            transform: translateY(-5px);
         }
         footer {
-            padding: 20px;
-            font-size: 0.8rem;
-            color: #b5935b;
-            letter-spacing: 2px;
+            padding: 40px;
+            font-size: 0.7rem;
+            color: #ccc;
+            letter-spacing: 3px;
             text-transform: uppercase;
+            text-align: center;
         }
     </style>
 </head>
@@ -92,23 +88,22 @@
     <main>
         <div class="templo-box">
             <h1>Bienvenida/o al Templo</h1>
-            <p>Un espacio para nutrir tu energía vital y encontrar el equilibrio que mereces.</p>
-            <div style="font-size: 0.9rem; letter-spacing: 1px; color: #d4af37;">ESTAMOS PREPARANDO TU EXPERIENCIA...</div>
-        </div>
-
-        <div class="chakras-nav">
-            <img src="11.png" class="chakra-dot" title="Raíz">
-            <img src="12.png" class="chakra-dot" title="Sacro">
-            <img src="13.png" class="chakra-dot" title="Plexo Solar">
-            <img src="14.png" class="chakra-dot" title="Corazón">
-            <img src="15.png" class="chakra-dot" title="Garganta">
-            <img src="16.png" class="chakra-dot" title="Tercer Ojo">
-            <img src="17.png" class="chakra-dot" title="Corona">
+            <p>Un espacio sagrado para nutrir tu energía vital y encontrar el equilibrio que mereces.</p>
+            
+            <div class="chakras-nav">
+                <img src="11.png" class="chakra-dot" title="Raíz">
+                <img src="12.png" class="chakra-dot" title="Sacro">
+                <img src="13.png" class="chakra-dot" title="Plexo Solar">
+                <img src="14.png" class="chakra-dot" title="Corazón">
+                <img src="15.png" class="chakra-dot" title="Garganta">
+                <img src="16.png" class="chakra-dot" title="Tercer Ojo">
+                <img src="17.png" class="chakra-dot" title="Corona">
+            </div>
         </div>
     </main>
 
-    <footer align="center">
-        iReiki-dō &copy; 2026
+    <footer>
+        iReiki-dō &bull; Est. 2026
     </footer>
 
 </body>

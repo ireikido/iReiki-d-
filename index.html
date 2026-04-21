@@ -8,48 +8,108 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #fdfaf6;
+            background-color: #fdfaf6; /* Crema suave */
             color: #4a4a4a;
             font-family: 'Georgia', serif;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            padding: 40px 20px;
             text-align: center;
         }
-        .container {
-            border: 1px solid #d4af37;
-            padding: 3rem;
-            max-width: 600px;
+        .logo-principal {
+            max-width: 250px; /* Tamaño del logo dorado */
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+        .logo-principal:hover {
+            transform: scale(1.05); /* Sutil movimiento al pasar el ratón */
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+        .templo-box {
+            border: 1px solid #d4af37; /* Borde dorado */
+            padding: 40px;
             background-color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 35px rgba(181, 147, 91, 0.1);
+            max-width: 500px;
+            text-align: center;
         }
         h1 {
             color: #b5935b;
             font-weight: 300;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin: 20px 0;
+            font-size: 1.5rem;
         }
         p {
             font-style: italic;
-            font-size: 1.2rem;
-            color: #888;
+            font-size: 1.1rem;
+            color: #777;
+            margin-bottom: 30px;
         }
-        .loading {
-            margin-top: 2rem;
+        .chakras-nav {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .chakra-dot {
+            width: 35px;
+            height: auto;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            cursor: pointer;
+        }
+        .chakra-dot:hover {
+            opacity: 1;
+        }
+        footer {
+            padding: 20px;
             font-size: 0.8rem;
+            color: #b5935b;
             letter-spacing: 2px;
-            color: #d4af37;
             text-transform: uppercase;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>iReiki-dō</h1>
-        <p>Tu refugio digital para el equilibrio energético.</p>
-        <div class="loading">El templo está abriendo sus puertas...</div>
-    </div>
+
+    <header>
+        <img src="3.png" alt="iReiki-do Logo" class="logo-principal">
+    </header>
+
+    <main>
+        <div class="templo-box">
+            <h1>Bienvenida/o al Templo</h1>
+            <p>Un espacio para nutrir tu energía vital y encontrar el equilibrio que mereces.</p>
+            <div style="font-size: 0.9rem; letter-spacing: 1px; color: #d4af37;">ESTAMOS PREPARANDO TU EXPERIENCIA...</div>
+        </div>
+
+        <div class="chakras-nav">
+            <img src="11.png" class="chakra-dot" title="Raíz">
+            <img src="12.png" class="chakra-dot" title="Sacro">
+            <img src="13.png" class="chakra-dot" title="Plexo Solar">
+            <img src="14.png" class="chakra-dot" title="Corazón">
+            <img src="15.png" class="chakra-dot" title="Garganta">
+            <img src="16.png" class="chakra-dot" title="Tercer Ojo">
+            <img src="17.png" class="chakra-dot" title="Corona">
+        </div>
+    </main>
+
+    <footer align="center">
+        iReiki-dō &copy; 2026
+    </footer>
+
 </body>
 </html>

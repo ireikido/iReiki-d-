@@ -9,20 +9,18 @@
             --color-lino: #fcf9f2; 
             --color-arena: #f0e6d2;
             --color-tierra-suave: #dccbb0;
-            --color-texto: #3d3428; /* Sepia muy oscuro */
+            --color-texto: #3d3428; 
             --color-acento: #8c7a5b; 
         }
 
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
-            /* Degradado Tierra dinámico para dar profundidad */
             background: radial-gradient(circle at 50% 50%, var(--color-lino) 0%, var(--color-arena) 100%);
             font-family: 'Georgia', serif;
             overflow: hidden;
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* Aura Tierra que se mueve suavemente */
         .aura-tierra {
             position: absolute; width: 150%; height: 150%;
             background: radial-gradient(circle, var(--color-tierra-suave) 0%, transparent 60%);
@@ -51,18 +49,25 @@
             text-align: center;
         }
 
-        /* RESPIRACIÓN CON PROFUNDIDAD */
+        /* RESPIRACIÓN DEL LOGO AVIVADA (NUEVO) */
         .logo-container {
             max-width: 420px; width: 65vw;
             position: relative; cursor: pointer;
-            animation: breathe-depth 10s infinite ease-in-out;
-            /* El filtro ayuda a suavizar el 'parche' del logo */
-            filter: drop-shadow(0 0 20px rgba(140, 122, 91, 0.1));
+            /* Animación más rítmica y notable */
+            animation: breathe-active 7s infinite cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        @keyframes breathe-depth {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 10px 10px rgba(61, 52, 40, 0.05)); }
-            50% { transform: scale(1.03); filter: drop-shadow(0 20px 30px rgba(61, 52, 40, 0.15)); }
+        @keyframes breathe-active {
+            /* Estado normal */
+            0%, 100% { 
+                transform: scale(1); 
+                filter: drop-shadow(0 5px 5px rgba(61, 52, 40, 0.05)); 
+            }
+            /* Punto álgido del latido: más grande y con sombra expansiva */
+            50% { 
+                transform: scale(1.05); /* Escala más notable */
+                filter: drop-shadow(0 15px 30px rgba(140, 122, 91, 0.3)); /* Sombra más densa y cálida */
+            }
         }
 
         .logo-zen { width: 100%; height: auto; display: block; }

@@ -19,9 +19,10 @@
             font-family: 'Georgia', serif;
             color: var(--color-texto);
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-        /* CAPA DE AURA SUTIL */
+        /* CAPA DE AURA */
         .aura-tierra {
             position: fixed; width: 150%; height: 150%;
             background: radial-gradient(circle, var(--color-tierra-suave) 0%, transparent 60%);
@@ -37,7 +38,7 @@
         .lang-btn { cursor: pointer; opacity: 0.4; transition: 0.4s; margin-left: 15px; }
         .lang-btn.active { opacity: 1; font-weight: bold; border-bottom: 1px solid var(--color-acento); }
 
-        /* SECCIÓN HERO (ALTURA COMPLETA) */
+        /* SECCIÓN HERO */
         .hero {
             height: 100vh; display: flex; align-items: center; justify-content: center;
             position: relative; z-index: 10;
@@ -45,7 +46,6 @@
 
         .templo-central { display: flex; flex-direction: column; align-items: center; text-align: center; }
 
-        /* RESPIRACIÓN DEL LOGO */
         .logo-container {
             max-width: 440px; width: 68vw;
             position: relative; cursor: pointer;
@@ -60,9 +60,10 @@
         h1 { font-weight: 300; letter-spacing: 14px; text-transform: uppercase; font-size: 1.3rem; margin-top: 40px; }
         .concepto-camino { font-size: 1rem; color: var(--color-acento); letter-spacing: 3px; margin-top: 12px; opacity: 0.8; }
 
-        /* MENÚ RAÍZ DE CHAKRAS (REVELADO FINO) */
+        /* MENÚ DE CHAKRAS AJUSTADO */
         .chakras-revelados {
-            display: flex; gap: 25px; margin-top: 60px;
+            display: flex; gap: 25px; 
+            margin-top: 30px; /* Subimos el grupo para que no esté tan lejos del texto */
             opacity: 0; transform: translateY(15px);
             transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
             pointer-events: none;
@@ -71,21 +72,34 @@
 
         .chakra-item { display: flex; flex-direction: column; align-items: center; position: relative; }
         .chakra-dot { width: 55px; filter: grayscale(100%); opacity: 0.3; transition: 0.5s ease; }
+        
         .chakra-label {
-            position: absolute; top: -35px; font-size: 0.55rem;
-            color: var(--color-acento); letter-spacing: 4px; /* Espaciado elegante */
+            position: absolute; 
+            top: -20px; /* Bajamos la etiqueta para que esté cerca del icono */
+            font-size: 0.55rem;
+            color: var(--color-acento); letter-spacing: 4px;
             text-transform: uppercase; opacity: 0; transition: 0.4s;
             white-space: nowrap;
         }
         .chakra-item:hover .chakra-dot { transform: scale(1.15); filter: grayscale(0%); opacity: 1; }
-        .chakra-item:hover .chakra-label { opacity: 1; top: -45px; }
+        .chakra-item:hover .chakra-label { opacity: 1; top: -28px; } /* Ajuste de movimiento fino */
 
-        /* SECCIÓN HISTORIA (AL HACER SCROLL) */
+        /* SECCIÓN HISTORIA */
         .historia {
-            padding: 120px 20px; max-width: 800px; margin: 0 auto;
-            text-align: center; position: relative; z-index: 10;
+            padding: 150px 40px;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.5s ease-out;
         }
-        .historia p { font-size: 1.2rem; font-style: italic; color: var(--color-acento); line-height: 2; }
+        .historia.visible { opacity: 1; transform: translateY(0); }
+        .historia p { font-size: 1.3rem; line-height: 2.2; color: var(--color-acento); font-weight: 300; }
+
+        .footer-spacer { height: 20vh; }
     </style>
 </head>
 <body>
@@ -103,7 +117,7 @@
                 <img src="2.png" alt="iReiki-do Logo" class="logo-zen">
             </div>
             <h1 id="welcome-text">Bienvenida/o a tu Templo</h1>
-            <p class="concepto-camino" id="camino-text">iReiki-dō: Evolucionando a cada paso</p>
+            <p class="concepto-camino" id="camino-text">iReiki-dō: El Reiki en mi camino</p>
 
             <div class="chakras-revelados">
                 <div class="chakra-item"><span class="chakra-label">Raíz</span><img src="11.png" class="chakra-dot"></div>
@@ -117,18 +131,38 @@
         </div>
     </section>
 
-    <section class="historia">
-        <p id="historia-text">"Dos caminos que se cruzan, una misma energía que fluye. Kike y Silvia: compartiendo el despertar del Templo."</p>
+    <section class="historia" id="seccion-historia">
+        <p id="historia-text">"En iReiki-dō, transformamos nuestra experiencia personal en un refugio para ti. Somos Kike y Silvia, y este es el espacio donde tu evolución energética comienza."</p>
     </section>
 
+    <div class="footer-spacer"></div>
+
     <script>
+        // Revelar historia al hacer scroll
+        window.addEventListener('scroll', function() {
+            const historySection = document.getElementById('seccion-historia');
+            const position = historySection.getBoundingClientRect().top;
+            const screenHeight = window.innerHeight;
+            if(position < screenHeight * 0.75) { historySection.classList.add('visible'); }
+        });
+
         function changeLang(lang) {
             const texts = {
-                es: { welcome: "Bienvenida/o a tu Templo", camino: "iReiki-dō: Evolucionando a cada paso" },
-                en: { welcome: "Welcome to your Temple", camino: "iReiki-dō: Evolving with every step" }
+                es: { 
+                    welcome: "Bienvenida/o a tu Templo", 
+                    camino: "iReiki-dō: El Reiki en mi camino",
+                    historia: '"En iReiki-dō, transformamos nuestra experiencia personal en un refugio para ti. Somos Kike y Silvia, y este es el espacio donde tu evolución energética comienza."'
+                },
+                en: { 
+                    welcome: "Welcome to your Temple", 
+                    camino: "iReiki-dō: Reiki in my way",
+                    historia: '"In iReiki-dō, we transform our personal experience into a sanctuary for you. We are Kike and Silvia, and this is the space where your energetic evolution begins."'
+                }
             };
             document.getElementById('welcome-text').innerText = texts[lang].welcome;
             document.getElementById('camino-text').innerText = texts[lang].camino;
+            document.getElementById('historia-text').innerText = texts[lang].historia;
+            
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if(btn.innerText.toLowerCase() === lang) btn.classList.add('active');

@@ -17,97 +17,75 @@
             margin: 0; padding: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at 50% 50%, var(--color-lino) 0%, var(--color-arena) 100%);
             font-family: 'Georgia', serif;
-            overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
+            color: var(--color-texto);
+            scroll-behavior: smooth;
         }
 
+        /* CAPA DE AURA SUTIL */
         .aura-tierra {
-            position: absolute; width: 150%; height: 150%;
+            position: fixed; width: 150%; height: 150%;
             background: radial-gradient(circle, var(--color-tierra-suave) 0%, transparent 60%);
-            opacity: 0.15; z-index: 1;
-            animation: drift 20s infinite alternate ease-in-out;
+            opacity: 0.12; z-index: 1; pointer-events: none;
+            animation: drift 25s infinite alternate ease-in-out;
         }
-
-        @keyframes drift {
-            from { transform: translate(-10%, -10%) scale(1); }
-            to { transform: translate(10%, 10%) scale(1.1); }
-        }
+        @keyframes drift { from { transform: translate(-5%, -5%); } to { transform: translate(5%, 5%); } }
 
         .lang-picker {
-            position: absolute; top: 30px; right: 40px;
-            font-size: 0.7rem; letter-spacing: 2px; z-index: 100;
+            position: fixed; top: 30px; right: 40px;
+            font-size: 0.7rem; letter-spacing: 3px; z-index: 100;
         }
-        .lang-btn {
-            cursor: pointer; color: var(--color-texto);
-            opacity: 0.5; transition: 0.3s; margin-left: 15px;
-        }
+        .lang-btn { cursor: pointer; opacity: 0.4; transition: 0.4s; margin-left: 15px; }
         .lang-btn.active { opacity: 1; font-weight: bold; border-bottom: 1px solid var(--color-acento); }
 
-        .templo-central {
-            position: relative; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; z-index: 10;
-            text-align: center;
+        /* SECCIÓN HERO (ALTURA COMPLETA) */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; z-index: 10;
         }
 
-        /* RESPIRACIÓN DEL LOGO AVIVADA (NUEVO) */
+        .templo-central { display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+        /* RESPIRACIÓN DEL LOGO */
         .logo-container {
-            max-width: 420px; width: 65vw;
+            max-width: 440px; width: 68vw;
             position: relative; cursor: pointer;
-            /* Animación más rítmica y notable */
-            animation: breathe-active 7s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            animation: breathe 8s infinite cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        @keyframes breathe-active {
-            /* Estado normal */
-            0%, 100% { 
-                transform: scale(1); 
-                filter: drop-shadow(0 5px 5px rgba(61, 52, 40, 0.05)); 
-            }
-            /* Punto álgido del latido: más grande y con sombra expansiva */
-            50% { 
-                transform: scale(1.05); /* Escala más notable */
-                filter: drop-shadow(0 15px 30px rgba(140, 122, 91, 0.3)); /* Sombra más densa y cálida */
-            }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 5px 10px rgba(61, 52, 40, 0.05)); }
+            50% { transform: scale(1.04); filter: drop-shadow(0 15px 35px rgba(140, 122, 91, 0.25)); }
         }
+        .logo-zen { width: 100%; height: auto; }
 
-        .logo-zen { width: 100%; height: auto; display: block; }
+        h1 { font-weight: 300; letter-spacing: 14px; text-transform: uppercase; font-size: 1.3rem; margin-top: 40px; }
+        .concepto-camino { font-size: 1rem; color: var(--color-acento); letter-spacing: 3px; margin-top: 12px; opacity: 0.8; }
 
-        h1 {
-            color: var(--color-texto); font-weight: 300;
-            letter-spacing: 12px; text-transform: uppercase;
-            font-size: 1.4rem; margin-top: 35px;
-        }
-
-        .concepto-camino {
-            font-size: 1.1rem; color: var(--color-acento);
-            letter-spacing: 2px; margin-top: 10px;
-            opacity: 0.9;
-        }
-
+        /* MENÚ RAÍZ DE CHAKRAS (REVELADO FINO) */
         .chakras-revelados {
-            display: flex; gap: 20px; margin-top: 50px;
-            opacity: 0; transform: translateY(10px);
-            transition: all 1s ease; pointer-events: none;
+            display: flex; gap: 25px; margin-top: 60px;
+            opacity: 0; transform: translateY(15px);
+            transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+            pointer-events: none;
         }
-        .templo-central:hover .chakras-revelados {
-            opacity: 1; transform: translateY(0); pointer-events: auto;
-        }
+        .templo-central:hover .chakras-revelados { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
-        .chakra-item { position: relative; display: flex; flex-direction: column; align-items: center; }
-        .chakra-dot { width: 50px; transition: 0.4s; filter: grayscale(100%) contrast(0.8); opacity: 0.4; }
+        .chakra-item { display: flex; flex-direction: column; align-items: center; position: relative; }
+        .chakra-dot { width: 55px; filter: grayscale(100%); opacity: 0.3; transition: 0.5s ease; }
         .chakra-label {
-            position: absolute; top: -30px; font-size: 0.6rem;
-            color: var(--color-acento); letter-spacing: 2px;
-            text-transform: uppercase; opacity: 0; transition: 0.3s;
+            position: absolute; top: -35px; font-size: 0.55rem;
+            color: var(--color-acento); letter-spacing: 4px; /* Espaciado elegante */
+            text-transform: uppercase; opacity: 0; transition: 0.4s;
+            white-space: nowrap;
         }
-        .chakra-item:hover .chakra-dot { transform: scale(1.2); filter: grayscale(0%) contrast(1); opacity: 1; }
-        .chakra-item:hover .chakra-label { opacity: 1; top: -40px; }
+        .chakra-item:hover .chakra-dot { transform: scale(1.15); filter: grayscale(0%); opacity: 1; }
+        .chakra-item:hover .chakra-label { opacity: 1; top: -45px; }
 
-        footer {
-            position: absolute; bottom: 30px; width: 100%;
-            text-align: center; font-size: 0.65rem; color: var(--color-acento); 
-            letter-spacing: 5px; opacity: 0.6;
+        /* SECCIÓN HISTORIA (AL HACER SCROLL) */
+        .historia {
+            padding: 120px 20px; max-width: 800px; margin: 0 auto;
+            text-align: center; position: relative; z-index: 10;
         }
+        .historia p { font-size: 1.2rem; font-style: italic; color: var(--color-acento); line-height: 2; }
     </style>
 </head>
 <body>
@@ -117,45 +95,40 @@
     <div class="lang-picker">
         <span class="lang-btn active" onclick="changeLang('es')">ES</span>
         <span class="lang-btn" onclick="changeLang('en')">EN</span>
-        <span class="lang-btn" onclick="changeLang('fr')">FR</span>
-        <span class="lang-btn" onclick="changeLang('jp')">JP</span>
     </div>
 
-    <div class="templo-central">
-        <div class="logo-container">
-            <img src="2.png" alt="iReiki-do Logo" class="logo-zen">
+    <section class="hero">
+        <div class="templo-central">
+            <div class="logo-container">
+                <img src="2.png" alt="iReiki-do Logo" class="logo-zen">
+            </div>
+            <h1 id="welcome-text">Bienvenida/o a tu Templo</h1>
+            <p class="concepto-camino" id="camino-text">iReiki-dō: Evolucionando a cada paso</p>
+
+            <div class="chakras-revelados">
+                <div class="chakra-item"><span class="chakra-label">Raíz</span><img src="11.png" class="chakra-dot"></div>
+                <div class="chakra-item"><span class="chakra-label">Sacro</span><img src="12.png" class="chakra-dot"></div>
+                <div class="chakra-item"><span class="chakra-label">Plexo</span><img src="13.png" class="chakra-dot"></div>
+                <div class="chakra-item"><span class="chakra-label">Reiki</span><img src="14.png" class="chakra-dot"></div>
+                <div class="chakra-item"><span class="chakra-label">Alquimia</span><img src="15.png" class="chakra-dot"></div>
+                <div class="chakra-item"><span class="chakra-label">Visión</span><img src="16.png" class="chakra-dot"></div>
+                <div class="chakra-item"><span class="chakra-label">Corona</span><img src="17.png" class="chakra-dot"></div>
+            </div>
         </div>
+    </section>
 
-        <h1 id="welcome-text">Bienvenida/o a tu Templo</h1>
-        <p class="concepto-camino" id="camino-text">iReiki-dō: Evolucionando a cada paso</p>
-
-        <div class="chakras-revelados">
-            <div class="chakra-item"><span class="chakra-label" data-es="Raíz" data-en="Root" data-fr="Racine" data-jp="根">Raíz</span><img src="11.png" class="chakra-dot"></div>
-            <div class="chakra-item"><span class="chakra-label" data-es="Sacro" data-en="Sacral" data-fr="Sacré" data-jp="仙骨">Sacro</span><img src="12.png" class="chakra-dot"></div>
-            <div class="chakra-item"><span class="chakra-label" data-es="Plexo" data-en="Plexus" data-fr="Plexus" data-jp="太陽神経叢">Plexo</span><img src="13.png" class="chakra-dot"></div>
-            <div class="chakra-item"><span class="chakra-label" data-es="Reiki" data-en="Reiki" data-fr="Reiki" data-jp="レイキ">Reiki</span><img src="14.png" class="chakra-dot"></div>
-            <div class="chakra-item"><span class="chakra-label" data-es="Alquimia" data-en="Alchemy" data-fr="Alchimie" data-jp="錬金術">Alquimia</span><img src="15.png" class="chakra-dot"></div>
-            <div class="chakra-item"><span class="chakra-label" data-es="Visión" data-en="Vision" data-fr="Vision" data-jp="ビジョン">Visión</span><img src="16.png" class="chakra-dot"></div>
-            <div class="chakra-item"><span class="chakra-label" data-es="Corona" data-en="Crown" data-fr="Couronne" data-jp="王冠">Corona</span><img src="17.png" class="chakra-dot"></div>
-        </div>
-    </div>
-
-    <footer>IREIKI-DŌ &bull; 2026</footer>
+    <section class="historia">
+        <p id="historia-text">"Dos caminos que se cruzan, una misma energía que fluye. Kike y Silvia: compartiendo el despertar del Templo."</p>
+    </section>
 
     <script>
-        const translations = {
-            es: { welcome: "Bienvenida/o a tu Templo", camino: "iReiki-dō: Evolucionando a cada paso" },
-            en: { welcome: "Welcome to your Temple", camino: "iReiki-dō: Evolving with every step" },
-            fr: { welcome: "Bienvenue dans votre Temple", camino: "iReiki-dō: Evoluer à chaque pas" },
-            jp: { welcome: "あなたの寺院へようこそ", camino: "iReiki-dō: 一歩ずつ進化する" }
-        };
-
         function changeLang(lang) {
-            document.getElementById('welcome-text').innerText = translations[lang].welcome;
-            document.getElementById('camino-text').innerText = translations[lang].camino;
-            document.querySelectorAll('.chakra-label').forEach(label => {
-                label.innerText = label.getAttribute(`data-${lang}`);
-            });
+            const texts = {
+                es: { welcome: "Bienvenida/o a tu Templo", camino: "iReiki-dō: Evolucionando a cada paso" },
+                en: { welcome: "Welcome to your Temple", camino: "iReiki-dō: Evolving with every step" }
+            };
+            document.getElementById('welcome-text').innerText = texts[lang].welcome;
+            document.getElementById('camino-text').innerText = texts[lang].camino;
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if(btn.innerText.toLowerCase() === lang) btn.classList.add('active');

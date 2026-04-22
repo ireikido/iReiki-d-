@@ -14,12 +14,11 @@
         }
 
         body, html {
-            margin: 0; padding: 0; width: 100%; height: 100%;
+            margin: 0; padding: 0; width: 100%; min-height: 100%;
             background: radial-gradient(circle at 50% 50%, var(--color-lino) 0%, var(--color-arena) 100%);
             font-family: 'Georgia', serif;
             color: var(--color-texto);
             scroll-behavior: smooth;
-            overflow-x: hidden;
         }
 
         /* CAPA DE AURA */
@@ -31,75 +30,63 @@
         }
         @keyframes drift { from { transform: translate(-5%, -5%); } to { transform: translate(5%, 5%); } }
 
+        /* SELECTOR DE IDIOMAS */
         .lang-picker {
             position: fixed; top: 30px; right: 40px;
             font-size: 0.7rem; letter-spacing: 3px; z-index: 100;
         }
-        .lang-btn { cursor: pointer; opacity: 0.4; transition: 0.4s; margin-left: 15px; }
+        .lang-btn { cursor: pointer; opacity: 0.3; transition: 0.4s; margin-left: 15px; text-transform: uppercase; }
         .lang-btn.active { opacity: 1; font-weight: bold; border-bottom: 1px solid var(--color-acento); }
 
-        /* SECCIÓN HERO */
+        /* SECCIÓN HERO (AJUSTADA PARA QUE NADA SE CORTE) */
         .hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            position: relative; z-index: 10;
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; z-index: 10; padding: 40px 0;
         }
 
-        .templo-central { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .templo-central { display: flex; flex-direction: column; align-items: center; text-align: center; width: 90%; }
 
         .logo-container {
-            max-width: 440px; width: 68vw;
-            position: relative; cursor: pointer;
+            max-width: 440px; width: 60vw;
             animation: breathe 8s infinite cubic-bezier(0.4, 0, 0.2, 1);
         }
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 5px 10px rgba(61, 52, 40, 0.05)); }
-            50% { transform: scale(1.04); filter: drop-shadow(0 15px 35px rgba(140, 122, 91, 0.25)); }
-        }
+        @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
         .logo-zen { width: 100%; height: auto; }
 
-        h1 { font-weight: 300; letter-spacing: 14px; text-transform: uppercase; font-size: 1.3rem; margin-top: 40px; }
-        .concepto-camino { font-size: 1rem; color: var(--color-acento); letter-spacing: 3px; margin-top: 12px; opacity: 0.8; }
+        h1 { font-weight: 300; letter-spacing: 12px; text-transform: uppercase; font-size: 1.2rem; margin-top: 30px; }
+        .concepto-camino { font-size: 0.9rem; color: var(--color-acento); letter-spacing: 3px; margin-top: 10px; }
 
-        /* MENÚ DE CHAKRAS AJUSTADO */
+        /* CHAKRAS REVELADOS */
         .chakras-revelados {
-            display: flex; gap: 25px; 
-            margin-top: 30px; /* Subimos el grupo para que no esté tan lejos del texto */
-            opacity: 0; transform: translateY(15px);
-            transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+            display: flex; gap: 20px; margin-top: 40px;
+            opacity: 0; transform: translateY(10px);
+            transition: all 0.8s ease;
             pointer-events: none;
         }
         .templo-central:hover .chakras-revelados { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
         .chakra-item { display: flex; flex-direction: column; align-items: center; position: relative; }
-        .chakra-dot { width: 55px; filter: grayscale(100%); opacity: 0.3; transition: 0.5s ease; }
-        
+        .chakra-dot { width: 50px; filter: grayscale(100%); opacity: 0.3; transition: 0.4s; }
         .chakra-label {
-            position: absolute; 
-            top: -20px; /* Bajamos la etiqueta para que esté cerca del icono */
-            font-size: 0.55rem;
-            color: var(--color-acento); letter-spacing: 4px;
-            text-transform: uppercase; opacity: 0; transition: 0.4s;
-            white-space: nowrap;
+            position: absolute; top: -20px; font-size: 0.5rem;
+            color: var(--color-acento); letter-spacing: 3px; text-transform: uppercase;
+            opacity: 0; transition: 0.3s;
         }
-        .chakra-item:hover .chakra-dot { transform: scale(1.15); filter: grayscale(0%); opacity: 1; }
-        .chakra-item:hover .chakra-label { opacity: 1; top: -28px; } /* Ajuste de movimiento fino */
+        .chakra-item:hover .chakra-dot { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
+        .chakra-item:hover .chakra-label { opacity: 1; top: -25px; }
 
-        /* SECCIÓN HISTORIA */
+        /* SECCIÓN HISTORIA (VISIBLE Y SEGURA) */
         .historia {
-            padding: 150px 40px;
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1.5s ease-out;
+            padding: 100px 40px 150px 40px;
+            max-width: 700px; margin: 0 auto;
+            text-align: center; position: relative; z-index: 10;
         }
-        .historia.visible { opacity: 1; transform: translateY(0); }
-        .historia p { font-size: 1.3rem; line-height: 2.2; color: var(--color-acento); font-weight: 300; }
+        .historia p { 
+            font-size: 1.3rem; line-height: 2.2; 
+            color: var(--color-acento); font-weight: 300; 
+            font-style: italic; 
+        }
 
-        .footer-spacer { height: 20vh; }
     </style>
 </head>
 <body>
@@ -107,8 +94,9 @@
     <div class="aura-tierra"></div>
 
     <div class="lang-picker">
-        <span class="lang-btn active" onclick="changeLang('es')">ES</span>
-        <span class="lang-btn" onclick="changeLang('en')">EN</span>
+        <span class="lang-btn active" id="btn-es" onclick="changeLang('es')">ES</span>
+        <span class="lang-btn" id="btn-en" onclick="changeLang('en')">EN</span>
+        <span class="lang-btn" id="btn-fr" onclick="changeLang('fr')">FR</span>
     </div>
 
     <section class="hero">
@@ -131,21 +119,11 @@
         </div>
     </section>
 
-    <section class="historia" id="seccion-historia">
+    <section class="historia">
         <p id="historia-text">"En iReiki-dō, transformamos nuestra experiencia personal en un refugio para ti. Somos Kike y Silvia, y este es el espacio donde tu evolución energética comienza."</p>
     </section>
 
-    <div class="footer-spacer"></div>
-
     <script>
-        // Revelar historia al hacer scroll
-        window.addEventListener('scroll', function() {
-            const historySection = document.getElementById('seccion-historia');
-            const position = historySection.getBoundingClientRect().top;
-            const screenHeight = window.innerHeight;
-            if(position < screenHeight * 0.75) { historySection.classList.add('visible'); }
-        });
-
         function changeLang(lang) {
             const texts = {
                 es: { 
@@ -157,16 +135,19 @@
                     welcome: "Welcome to your Temple", 
                     camino: "iReiki-dō: Reiki in my way",
                     historia: '"In iReiki-dō, we transform our personal experience into a sanctuary for you. We are Kike and Silvia, and this is the space where your energetic evolution begins."'
+                },
+                fr: { 
+                    welcome: "Bienvenue dans votre Temple", 
+                    camino: "iReiki-dō: Le Reiki sur mon chemin",
+                    historia: '"Chez iReiki-dō, nous transformons notre expérience personnelle en un sanctuaire pour vous. Nous sommes Kike et Silvia, et c’est ici que commence votre évolution énergétique."'
                 }
             };
             document.getElementById('welcome-text').innerText = texts[lang].welcome;
             document.getElementById('camino-text').innerText = texts[lang].camino;
             document.getElementById('historia-text').innerText = texts[lang].historia;
             
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.innerText.toLowerCase() === lang) btn.classList.add('active');
-            });
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
         }
     </script>
 </body>

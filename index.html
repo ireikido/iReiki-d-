@@ -22,7 +22,6 @@
             overflow-x: hidden;
         }
 
-        /* CAPA DE AURA */
         .aura-tierra {
             position: fixed; width: 150%; height: 150%;
             background: radial-gradient(circle, var(--color-tierra-suave) 0%, transparent 60%);
@@ -31,7 +30,6 @@
         }
         @keyframes drift { from { transform: translate(-5%, -5%); } to { transform: translate(5%, 5%); } }
 
-        /* SELECTOR DE IDIOMAS */
         .lang-picker {
             position: fixed; top: 30px; right: 40px;
             font-size: 0.7rem; letter-spacing: 3px; z-index: 100;
@@ -40,49 +38,30 @@
         .lang-btn.active { opacity: 1; font-weight: bold; border-bottom: 1px solid var(--color-acento); }
 
         /* SECCIÓN HERO */
-        .hero {
-            min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            position: relative; z-index: 10;
-        }
-
-        .templo-central { 
-            display: flex; flex-direction: column; align-items: center; text-align: center; 
-            width: fit-content; padding: 40px; /* Limitamos el área de hover aquí */
-        }
-
-        .logo-container {
-            max-width: 440px; width: 60vw;
-            animation: breathe 8s infinite cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 10; }
+        .templo-central { display: flex; flex-direction: column; align-items: center; text-align: center; width: fit-content; padding: 40px; }
+        .logo-container { max-width: 440px; width: 60vw; animation: breathe 8s infinite cubic-bezier(0.4, 0, 0.2, 1); }
         @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
         .logo-zen { width: 100%; height: auto; }
-
         h1 { font-weight: 300; letter-spacing: 12px; text-transform: uppercase; font-size: 1.2rem; margin-top: 30px; }
         .concepto-camino { font-size: 0.9rem; color: var(--color-acento); letter-spacing: 3px; margin-top: 10px; }
 
-        /* CHAKRAS: MÁS GRANDES Y CONTROLADOS */
+        /* CHAKRAS */
         .chakras-revelados {
             display: flex; gap: 30px; margin-top: 50px;
             opacity: 0; transform: translateY(20px);
-            transition: all 1s ease;
-            pointer-events: none;
+            transition: all 1s ease; pointer-events: none;
         }
-        /* Solo se activan si el ratón está sobre el contenedor central */
         .templo-central:hover .chakras-revelados { opacity: 1; transform: translateY(0); pointer-events: auto; }
-
         .chakra-item { display: flex; flex-direction: column; align-items: center; position: relative; }
-        .chakra-dot { width: 85px; filter: grayscale(100%); opacity: 0.25; transition: 0.5s; } /* Tamaño aumentado */
-        .chakra-label {
-            position: absolute; top: -25px; font-size: 0.55rem;
-            color: var(--color-acento); letter-spacing: 4px; text-transform: uppercase;
-            opacity: 0; transition: 0.3s;
-        }
+        .chakra-dot { width: 85px; filter: grayscale(100%); opacity: 0.25; transition: 0.5s; }
+        .chakra-label { position: absolute; top: -25px; font-size: 0.55rem; color: var(--color-acento); letter-spacing: 4px; text-transform: uppercase; opacity: 0; transition: 0.3s; }
         .chakra-item:hover .chakra-dot { filter: grayscale(0%); opacity: 1; transform: scale(1.15); }
         .chakra-item:hover .chakra-label { opacity: 1; top: -30px; }
 
-        /* SECCIÓN HISTORIA: EL REFUGIO CON ALMA */
+        /* SECCIÓN HISTORIA CON SÍMBOLOS MÁGICOS */
         .historia {
-            padding: 200px 40px 300px 40px;
+            padding: 250px 40px;
             display: flex;
             justify-content: center;
             position: relative;
@@ -90,40 +69,46 @@
         }
 
         .historia-flotante {
-            background: radial-gradient(ellipse at center, rgba(255, 251, 245, 0.9) 0%, transparent 85%);
-            padding: 100px;
-            max-width: 1100px; 
+            max-width: 1100px;
             width: 100%;
             text-align: center;
             position: relative;
-        }
-
-        /* Símbolos decorativos sutiles */
-        .simbolo-energia {
-            font-size: 1.5rem;
-            color: var(--color-tierra-suave);
-            opacity: 0.4;
-            margin-bottom: 20px;
-            display: block;
+            background: radial-gradient(ellipse at center, rgba(255, 251, 245, 0.9) 0%, transparent 85%);
+            padding: 100px 0;
         }
 
         .historia p { 
-            font-size: 1.6rem; 
-            line-height: 2.2; 
-            color: var(--color-texto); 
-            font-weight: 300; 
-            font-style: italic;
-            margin: 0;
-            letter-spacing: 0.5px;
+            font-size: 1.6rem; line-height: 2.2; color: var(--color-texto); 
+            font-weight: 300; font-style: italic; position: relative; z-index: 5;
         }
 
-        .separador-circular {
-            width: 12px; height: 12px;
-            border: 1px solid var(--color-acento);
-            border-radius: 50%;
-            margin: 40px auto;
-            opacity: 0.3;
+        /* ESTILO DE LOS SÍMBOLOS REIKI (Cho Ku Rei) */
+        .reiki-symbol {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            fill: var(--color-acento);
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5);
+            transition: all 2s cubic-bezier(0.2, 1, 0.3, 1);
+            pointer-events: none;
+            z-index: 1;
         }
+
+        /* Animación cuando la sección entra en pantalla */
+        .historia.visible .reiki-left {
+            opacity: 0.15;
+            transform: translate(-450px, -50%) scale(1.2) rotate(-15deg);
+        }
+
+        .historia.visible .reiki-right {
+            opacity: 0.15;
+            transform: translate(330px, -50%) scale(1.2) rotate(15deg);
+        }
+
+        .separador-circular { width: 12px; height: 12px; border: 1px solid var(--color-acento); border-radius: 50%; margin: 40px auto; opacity: 0.3; }
 
     </style>
 </head>
@@ -157,17 +142,35 @@
         </div>
     </section>
 
-    <section class="historia">
+    <section class="historia" id="section-historia">
         <div class="historia-flotante">
-            <span class="simbolo-energia">✧</span>
+            <svg class="reiki-symbol reiki-left" viewBox="0 0 100 100">
+                <path d="M30,20 L70,20 L70,25 C70,25 35,25 35,50 C35,75 65,75 65,60 C65,45 45,45 45,55 C45,60 55,60 55,55"></path>
+                <circle cx="55" cy="55" r="2" fill="currentColor"></circle>
+            </svg>
+
             <div class="separador-circular"></div>
             <p id="historia-text">"En iReiki-dō, transformamos nuestra experiencia personal en un refugio para ti. Somos Kike y Silvia, y este es el espacio donde tu evolución energética comienza."</p>
             <div class="separador-circular"></div>
-            <span class="simbolo-energia">✧</span>
+
+            <svg class="reiki-symbol reiki-right" viewBox="0 0 100 100">
+                <path d="M30,20 L70,20 L70,25 C70,25 35,25 35,50 C35,75 65,75 65,60 C65,45 45,45 45,55 C45,60 55,60 55,55" stroke="currentColor" fill="none" stroke-width="2"></path>
+            </svg>
         </div>
     </section>
 
     <script>
+        // Función para detectar el scroll y activar los símbolos
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(document.getElementById('section-historia'));
+
         function changeLang(lang) {
             const texts = {
                 es: { 
@@ -183,13 +186,12 @@
                 fr: { 
                     welcome: "Bienvenue dans votre Temple", 
                     camino: "iReiki-dō: Le Reiki sur mon chemin",
-                    historia: '"Chez iReiki-dō, nous transformons notre experiencia personnelle en un sanctuaire pour vous. Nous sommes Kike et Silvia, et c’est ici que commence votre evolución énergétique."'
+                    historia: '"Chez iReiki-dō, nous transformons notre expérience personnelle en un sanctuaire pour vous. Nous sommes Kike y Silvia, et c’est ici que commence votre evolución énergétique."'
                 }
             };
             document.getElementById('welcome-text').innerText = texts[lang].welcome;
             document.getElementById('camino-text').innerText = texts[lang].camino;
             document.getElementById('historia-text').innerText = texts[lang].historia;
-            
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('btn-' + lang).classList.add('active');
         }

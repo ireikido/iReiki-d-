@@ -10,7 +10,8 @@
             --color-arena: #f0e6d2;
             --color-tierra-suave: #dccbb0;
             --color-texto: #3d3428; 
-            --color-acento: #8c7a5b; 
+            --color-acento: #8c7a5b;
+            --fondo-caja: rgba(255, 251, 245, 0.7); 
         }
 
         body, html {
@@ -38,7 +39,7 @@
         .lang-btn { cursor: pointer; opacity: 0.3; transition: 0.4s; margin-left: 15px; text-transform: uppercase; }
         .lang-btn.active { opacity: 1; font-weight: bold; border-bottom: 1px solid var(--color-acento); }
 
-        /* SECCIÓN HERO (AJUSTADA PARA QUE NADA SE CORTE) */
+        /* SECCIÓN HERO */
         .hero {
             min-height: 100vh; display: flex; align-items: center; justify-content: center;
             position: relative; z-index: 10; padding: 40px 0;
@@ -68,23 +69,48 @@
         .chakra-item { display: flex; flex-direction: column; align-items: center; position: relative; }
         .chakra-dot { width: 50px; filter: grayscale(100%); opacity: 0.3; transition: 0.4s; }
         .chakra-label {
-            position: absolute; top: -20px; font-size: 0.5rem;
+            position: absolute; top: -22px; font-size: 0.5rem;
             color: var(--color-acento); letter-spacing: 3px; text-transform: uppercase;
             opacity: 0; transition: 0.3s;
         }
         .chakra-item:hover .chakra-dot { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
         .chakra-item:hover .chakra-label { opacity: 1; top: -25px; }
 
-        /* SECCIÓN HISTORIA (VISIBLE Y SEGURA) */
+        /* SECCIÓN HISTORIA REFINADA (EL REFUGIO) */
         .historia {
-            padding: 100px 40px 150px 40px;
-            max-width: 700px; margin: 0 auto;
-            text-align: center; position: relative; z-index: 10;
+            padding: 120px 20px 200px 20px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
         }
+
+        .historia-box {
+            background: var(--fondo-caja);
+            padding: 60px 40px;
+            max-width: 750px;
+            border-radius: 4px;
+            box-shadow: 0 15px 45px rgba(140, 122, 91, 0.08);
+            border-left: 1px solid var(--color-tierra-suave);
+            border-right: 1px solid var(--color-tierra-suave);
+            text-align: center;
+        }
+
+        .separador-zen {
+            width: 50px;
+            height: 1px;
+            background: var(--color-acento);
+            margin: 30px auto;
+            opacity: 0.3;
+        }
+
         .historia p { 
-            font-size: 1.3rem; line-height: 2.2; 
-            color: var(--color-acento); font-weight: 300; 
-            font-style: italic; 
+            font-size: 1.4rem; 
+            line-height: 2.4; 
+            color: var(--color-texto); 
+            font-weight: 300; 
+            font-style: italic;
+            margin: 0;
         }
 
     </style>
@@ -120,7 +146,11 @@
     </section>
 
     <section class="historia">
-        <p id="historia-text">"En iReiki-dō, transformamos nuestra experiencia personal en un refugio para ti. Somos Kike y Silvia, y este es el espacio donde tu evolución energética comienza."</p>
+        <div class="historia-box">
+            <div class="separador-zen"></div>
+            <p id="historia-text">"En iReiki-dō, transformamos nuestra experiencia personal en un refugio para ti. Somos Kike y Silvia, y este es el espacio donde tu evolución energética comienza."</p>
+            <div class="separador-zen"></div>
+        </div>
     </section>
 
     <script>
@@ -139,7 +169,7 @@
                 fr: { 
                     welcome: "Bienvenue dans votre Temple", 
                     camino: "iReiki-dō: Le Reiki sur mon chemin",
-                    historia: '"Chez iReiki-dō, nous transformons notre expérience personnelle en un sanctuaire pour vous. Nous sommes Kike et Silvia, et c’est ici que commence votre évolution énergétique."'
+                    historia: '"Chez iReiki-dō, nous transformons notre expérience personnelle en un sanctuaire pour vous. Nous sommes Kike et Silvia, et c’est ici que commence votre evolución énergétique."'
                 }
             };
             document.getElementById('welcome-text').innerText = texts[lang].welcome;

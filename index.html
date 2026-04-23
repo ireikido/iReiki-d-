@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -26,37 +26,33 @@
         .lang-btn { cursor: pointer; opacity: 0.3; transition: 0.4s; margin-left: 15px; text-transform: uppercase; }
         .lang-btn.active { opacity: 1; font-weight: bold; border-bottom: 1px solid var(--color-acento); }
 
-        /* NAVEGACIÓN LATERAL X2 */
+        /* NAVEGACIÓN LATERAL (OCULTA POR DEFECTO) */
         .nav-flotante {
             position: fixed; top: 100px; right: 40px;
             display: flex; flex-direction: column; align-items: center;
-            z-index: 1000; opacity: 0; transition: 0.6s ease-in-out; pointer-events: none;
+            z-index: 1000; opacity: 0; transition: 0.8s ease-in-out; pointer-events: none;
         }
         .nav-flotante.visible { opacity: 1; pointer-events: auto; }
-        .logo-mini { width: 100px; cursor: pointer; transition: 0.4s; } 
+        .logo-mini { width: 100px; cursor: pointer; } 
         
-        .chakras-nav {
-            display: flex; flex-direction: column; gap: 20px; margin-top: 40px;
-            transform: translateX(30px); opacity: 0; transition: 0.5s;
-        }
-        .nav-flotante:hover .chakras-nav { transform: translateX(0); opacity: 1; }
+        .chakras-nav { display: flex; flex-direction: column; gap: 20px; margin-top: 40px; }
         .chakra-btn-container { position: relative; display: flex; align-items: center; justify-content: flex-end; }
         .chakra-btn { width: 60px; cursor: pointer; opacity: 0.4; transition: 0.4s; filter: grayscale(100%); } 
         .chakra-btn:hover { opacity: 1; transform: scale(1.1); filter: grayscale(0); }
         .label-nav { position: absolute; right: 75px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; opacity: 0; transition: 0.3s; white-space: nowrap; color: var(--color-acento); }
         .chakra-btn-container:hover .label-nav { opacity: 1; }
 
-        /* HERO SECTION & LATIDO */
+        /* HERO SECTION & LATIDO LENTO */
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 10; }
         .templo-central { display: flex; flex-direction: column; align-items: center; text-align: center; }
         .logo-container { 
             max-width: 440px; width: 60vw; 
-            animation: breathe 4s infinite ease-in-out; 
+            animation: breathe 8s infinite ease-in-out; /* Velocidad reducida a la mitad */
             margin-bottom: 20px; 
         }
         @keyframes breathe { 
             0%, 100% { transform: scale(1); } 
-            50% { transform: scale(1.06); } 
+            50% { transform: scale(1.04); } 
         }
         
         h1 { font-weight: 300; letter-spacing: 12px; text-transform: uppercase; font-size: 1.5rem; margin: 20px 0 10px 0; }
@@ -66,26 +62,17 @@
         .chakra-main-item-wrapper { position: relative; display: flex; flex-direction: column; align-items: center; }
         .chakra-main-item { width: 80px; filter: grayscale(100%); opacity: 0.2; transition: 0.5s; cursor: pointer; }
         .chakra-main-item:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
-        .label-main { position: absolute; top: -35px; font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; opacity: 0; transition: 0.3s; color: var(--color-acento); }
-        .chakra-main-item-wrapper:hover .label-main { opacity: 1; top: -45px; }
 
         /* HISTORIA */
         .historia { min-height: 120vh; display: flex; align-items: center; justify-content: center; position: relative; padding: 100px 0; }
         .historia p { font-size: 1.7rem; line-height: 2.3; font-style: italic; text-align: center; max-width: 900px; padding: 0 50px; z-index: 5; font-weight: 300; }
-
-        /* SÍMBOLOS */
-        .reiki-anim { position: absolute; top: 50%; left: 50%; width: 140px; opacity: 0; transition: 2s; transform: translate(-50%, -50%); pointer-events: none; }
-        .historia.visible .simbolo-sup { opacity: 0.15; transform: translate(-50%, -420px); }
-        .historia.visible .simbolo-inf { opacity: 0.15; transform: translate(-50%, 300px); }
-        .historia.visible .simbolo-izq { opacity: 0.07; transform: translate(-600px, -50%); }
-        .historia.visible .simbolo-der { opacity: 0.07; transform: translate(450px, -50%); }
 
         /* BOTÓN SUBIR */
         .btn-antigravedad {
             position: fixed; bottom: 30px; right: 30px;
             width: 50px; height: 50px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            cursor: pointer; opacity: 0; transition: 0.4s; font-size: 1.2rem;
+            cursor: pointer; opacity: 0; transition: 0.4s;
             border: 1px solid var(--color-texto); background: rgba(252, 249, 242, 0.8);
             z-index: 1200; pointer-events: none;
         }
@@ -119,22 +106,18 @@
             <h1>Bienvenida/o a tu Templo</h1>
             <p class="concepto-camino">iReiki-dō: El Reiki en mi camino</p>
             <div class="chakras-main">
-                <div class="chakra-main-item-wrapper"><span class="label-main">Raíz</span><img src="11.png" class="chakra-main-item" onclick="document.getElementById('section-historia').scrollIntoView()"></div>
-                <div class="chakra-main-item-wrapper"><span class="label-main">Sacro</span><img src="12.png" class="chakra-main-item"></div>
-                <div class="chakra-main-item-wrapper"><span class="label-main">Plexo</span><img src="13.png" class="chakra-main-item"></div>
-                <div class="chakra-main-item-wrapper"><span class="label-main">Corazón</span><img src="14.png" class="chakra-main-item"></div>
-                <div class="chakra-main-item-wrapper"><span class="label-main">Garganta</span><img src="15.png" class="chakra-main-item"></div>
-                <div class="chakra-main-item-wrapper"><span class="label-main">Tercer Ojo</span><img src="16.png" class="chakra-main-item"></div>
-                <div class="chakra-main-item-wrapper"><span class="label-main">Corona</span><img src="17.png" class="chakra-main-item"></div>
+                <div class="chakra-main-item-wrapper"><img src="11.png" class="chakra-main-item" onclick="document.getElementById('section-historia').scrollIntoView()"></div>
+                <div class="chakra-main-item-wrapper"><img src="12.png" class="chakra-main-item"></div>
+                <div class="chakra-main-item-wrapper"><img src="13.png" class="chakra-main-item"></div>
+                <div class="chakra-main-item-wrapper"><img src="14.png" class="chakra-main-item"></div>
+                <div class="chakra-main-item-wrapper"><img src="15.png" class="chakra-main-item"></div>
+                <div class="chakra-main-item-wrapper"><img src="16.png" class="chakra-main-item"></div>
+                <div class="chakra-main-item-wrapper"><img src="17.png" class="chakra-main-item"></div>
             </div>
         </div>
     </section>
 
     <section class="historia" id="section-historia">
-        <img src="dai-ko-myo.png" class="reiki-anim simbolo-sup">
-        <img src="cho-ku-rei.png" class="reiki-anim simbolo-inf">
-        <img src="sei-he-ki.png" class="reiki-anim simbolo-izq">
-        <img src="hon-sha.png" class="reiki-anim simbolo-der">
         <p>"En iReiki-dō, transformamos nuestra experiencia personal en un refugio para ti. Somos Kike y Silvia, y este es el espacio donde tu evolución energética comienza."</p>
     </section>
 
@@ -145,7 +128,8 @@
         const btnUp = document.getElementById('btn-up');
 
         window.onscroll = function() {
-            if (window.scrollY > 300) {
+            // Solo muestra el menú lateral y el botón subir después de bajar 400px
+            if (window.scrollY > 400) {
                 navFlotante.classList.add('visible');
                 btnUp.classList.add('visible');
             } else {
@@ -153,16 +137,6 @@
                 btnUp.classList.remove('visible');
             }
         };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        observer.observe(document.getElementById('section-historia'));
     </script>
 </body>
 </html>

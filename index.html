@@ -11,7 +11,6 @@
             --color-tierra-suave: #dccbb0;
             --color-texto: #3d3428; 
             --color-acento: #8c7a5b;
-            --fondo-nube: rgba(255, 251, 245, 0.8);
         }
 
         body, html {
@@ -23,7 +22,6 @@
             overflow-x: hidden;
         }
 
-        /* CAPA DE AURA */
         .aura-tierra {
             position: fixed; width: 150%; height: 150%;
             background: radial-gradient(circle, var(--color-tierra-suave) 0%, transparent 60%);
@@ -32,15 +30,12 @@
         }
         @keyframes drift { from { transform: translate(-5%, -5%); } to { transform: translate(5%, 5%); } }
 
-        /* SELECTOR DE IDIOMAS */
-        .lang-picker {
-            position: fixed; top: 30px; right: 40px;
-            font-size: 0.7rem; letter-spacing: 3px; z-index: 100;
-        }
+        /* IDIOMAS */
+        .lang-picker { position: fixed; top: 30px; right: 40px; font-size: 0.7rem; letter-spacing: 3px; z-index: 100; }
         .lang-btn { cursor: pointer; opacity: 0.3; transition: 0.4s; margin-left: 15px; text-transform: uppercase; }
         .lang-btn.active { opacity: 1; font-weight: bold; border-bottom: 1px solid var(--color-acento); }
 
-        /* SECCIÓN HERO (AJUSTE FINO) */
+        /* HERO SECTION */
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 10; }
         .templo-central { display: flex; flex-direction: column; align-items: center; text-align: center; width: fit-content; padding: 40px; }
         .logo-container { max-width: 440px; width: 60vw; animation: breathe 8s infinite cubic-bezier(0.4, 0, 0.2, 1); }
@@ -58,84 +53,66 @@
         .chakra-item:hover .chakra-dot { filter: grayscale(0%); opacity: 1; transform: scale(1.15); }
         .chakra-item:hover .chakra-label { opacity: 1; top: -30px; }
 
-        /* SECCIÓN HISTORIA CON EL ABRAZO SAGRADO (AJUSTE FINO) */
+        /* SECCIÓN HISTORIA REIMAGINADA: MÁXIMA AMPLITUD */
         .historia {
-            padding: 250px 40px;
+            min-height: 120vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
             z-index: 10;
+            padding: 100px 0;
         }
 
-        /* Nube de luz orgánica sobre el texto */
-        .historia-nube {
-            background: var(--fondo-nube);
-            padding: 80px 60px;
-            max-width: 1100px;
+        /* Ya no hay óvalo blanco, solo una zona de luz difusa */
+        .historia-flotante {
+            max-width: 1200px;
             width: 100%;
-            border-radius: 50%; /* Nube orgánica */
             text-align: center;
-            position: relative;
-        }
-
-        /* Contenedor del texto que respira */
-        .frase-container {
-            max-width: 900px;
-            margin: 0 auto;
             position: relative;
             z-index: 5;
         }
 
         .historia p { 
-            font-size: 1.6rem; line-height: 2.2; color: var(--color-texto); 
-            font-weight: 300; font-style: italic; margin: 0;
-            letter-spacing: 0.5px;
+            font-size: 1.7rem; line-height: 2.3; color: var(--color-texto); 
+            font-weight: 300; font-style: italic; margin: 0; padding: 0 100px;
+            letter-spacing: 0.8px;
         }
 
-        /* Símbolos maestros antes y después (Dai Ko Myo y Cho Ku Rei) */
-        .simbolo-maestro {
-            width: 120px;
-            height: auto;
-            opacity: 0.15;
-            transition: all 1.5s ease;
-            transform: scale(0.7);
-        }
-        
-        .historia.visible .simbolo-maestro {
-            opacity: 0.25;
-            transform: scale(1);
-        }
-
-        .simbolo-maestro.superior { margin-bottom: 50px; }
-        .simbolo-maestro.inferior { margin-top: 50px; }
-
-        /* Símbolos etéreos arropando (Sei He Ki y Hon Sha Ze Sho Nen) */
-        .simbolo-etereo {
+        /* SÍMBOLOS: ANIMACIÓN DE EXPANSIÓN DESDE EL CENTRO */
+        .reiki-anim {
             position: absolute;
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.5);
-            transition: all 2s cubic-bezier(0.2, 1, 0.3, 1);
-            pointer-events: none;
-            z-index: 1; /* Detrás del texto */
-            width: 250px;
+            top: 50%;
+            left: 50%;
+            width: 140px;
             height: auto;
+            opacity: 0;
+            transition: all 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translate(-50%, -50%) scale(0.2); /* Nacen pequeños y centrados */
+            pointer-events: none;
+            z-index: 1;
         }
 
-        /* Animaciones del abrazo sagrado */
-        .historia.visible .reiki-background-l {
-            opacity: 0.08;
-            top: 50%;
-            left: 20%;
-            transform: translate(-50%, -50%) scale(1.1) rotate(-10deg);
+        /* Posiciones finales con mucho aire */
+        .historia.visible .simbolo-sup {
+            opacity: 0.15;
+            transform: translate(-50%, -400px) scale(1); /* Viaja hacia arriba */
         }
 
-        .historia.visible .reiki-background-r {
-            opacity: 0.08;
-            top: 50%;
-            left: 80%;
-            transform: translate(-50%, -50%) scale(1.1) rotate(10deg);
+        .historia.visible .simbolo-inf {
+            opacity: 0.15;
+            transform: translate(-50%, 280px) scale(1.2); /* Viaja hacia abajo */
+        }
+
+        .historia.visible .simbolo-izq {
+            opacity: 0.07;
+            transform: translate(-650px, -50%) scale(1.5) rotate(-10deg); /* Viaja a la izquierda */
+        }
+
+        .historia.visible .simbolo-der {
+            opacity: 0.07;
+            transform: translate(500px, -50%) scale(1.5) rotate(10deg); /* Viaja a la derecha */
         }
 
     </style>
@@ -171,30 +148,24 @@
     </section>
 
     <section class="historia" id="section-historia">
-        <img src="dai-ko-myo.png" alt="Dai Ko Myo" class="simbolo-maestro superior">
+        <img src="dai-ko-myo.png" class="reiki-anim simbolo-sup">
+        <img src="cho-ku-rei.png" class="reiki-anim simbolo-inf">
+        <img src="sei-he-ki.png" class="reiki-anim simbolo-izq">
+        <img src="hon-sha.png" class="reiki-anim simbolo-der">
 
-        <div class="historia-nube">
-            <img src="sei-he-ki.png" alt="Sei He Ki" class="simbolo-etereo reiki-background-l">
-
-            <div class="frase-container">
-                <p id="historia-text">"En iReiki-dō, transformamos nuestra experiencia personal en un refugio para ti. Somos Kike y Silvia, y este es el espacio donde tu evolución energética comienza."</p>
-            </div>
-
-            <img src="hon-sha.png" alt="Hon Sha Ze Sho Nen" class="simbolo-etereo reiki-background-r">
+        <div class="historia-flotante">
+            <p id="historia-text">"En iReiki-dō, transformamos nuestra experiencia personal en un refugio para ti. Somos Kike y Silvia, y este es el espacio donde tu evolución energética comienza."</p>
         </div>
-
-        <img src="cho-ku-rei.png" alt="Cho Ku Rei" class="simbolo-maestro inferior">
     </section>
 
     <script>
-        // Función para detectar el scroll y activar los símbolos (Abrazo Sagrado)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.5 }); // Activamos al 50% de visibilidad
+        }, { threshold: 0.3 });
 
         observer.observe(document.getElementById('section-historia'));
 

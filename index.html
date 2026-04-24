@@ -27,9 +27,7 @@
         .lang-btn.active { opacity: 1; font-weight: bold; border-bottom: 1px solid var(--color-acento); }
 
         /* NAVEGACIÓN LATERAL DERECHA (Aparece con Scroll) */
-
-
-                .nav-flotante {
+        .nav-flotante {
             position: fixed; 
             top: 80px; 
             right: 40px;
@@ -91,12 +89,23 @@
 
         /* BOTÓN SUBIR */
         .btn-antigravedad {
-            position: fixed; bottom: 30px; left: 30px;
-            width: 45px; height: 45px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; opacity: 0; transition: 0.5s;
-            border: 1px solid var(--color-acento); background: rgba(252, 249, 242, 0.9);
-            z-index: 1200; pointer-events: none; font-size: 1.2rem;
+            position: fixed; 
+            bottom: 30px; 
+            right: 40px; 
+            width: 45px; 
+            height: 45px; 
+            border-radius: 50%;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            cursor: pointer; 
+            opacity: 0; 
+            transition: 0.5s;
+            border: 1px solid var(--color-acento); 
+            background: rgba(252, 249, 242, 0.9);
+            z-index: 1200; 
+            pointer-events: none; 
+            font-size: 1.2rem;
         }
         .btn-antigravedad.visible { opacity: 0.4; pointer-events: auto; }
     </style>
@@ -110,15 +119,15 @@
     </div>
 
     <nav class="nav-flotante" id="nav-flotante">
-        <img src="2.png" class="logo-mini" onclick="window.scrollTo(0,0)">
+        <img src="2.png" class="logo-mini" alt="Logo mini" onclick="window.scrollTo(0,0)">
         <div class="chakras-nav">
-            <div class="chakra-btn-container"><span class="label-nav">Raíz</span><img src="11.png" class="chakra-btn" onclick="document.getElementById('section-historia').scrollIntoView()"></div>
-            <div class="chakra-btn-container"><span class="label-nav">Sacro</span><img src="12.png" class="chakra-btn"></div>
-            <div class="chakra-btn-container"><span class="label-nav">Plexo</span><img src="13.png" class="chakra-btn"></div>
-            <div class="chakra-btn-container"><span class="label-nav">Corazón</span><img src="14.png" class="chakra-btn"></div>
-            <div class="chakra-btn-container"><span class="label-nav">Garganta</span><img src="15.png" class="chakra-btn"></div>
-            <div class="chakra-btn-container"><span class="label-nav">Tercer Ojo</span><img src="16.png" class="chakra-btn"></div>
-            <div class="chakra-btn-container"><span class="label-nav">Corona</span><img src="17.png" class="chakra-btn"></div>
+            <div class="chakra-btn-container"><span class="label-nav">Raíz</span><img src="11.png" class="chakra-btn" alt="Raíz" onclick="document.getElementById('section-historia').scrollIntoView()"></div>
+            <div class="chakra-btn-container"><span class="label-nav">Sacro</span><img src="12.png" class="chakra-btn" alt="Sacro"></div>
+            <div class="chakra-btn-container"><span class="label-nav">Plexo</span><img src="13.png" class="chakra-btn" alt="Plexo"></div>
+            <div class="chakra-btn-container"><span class="label-nav">Corazón</span><img src="14.png" class="chakra-btn" alt="Corazón"></div>
+            <div class="chakra-btn-container"><span class="label-nav">Garganta</span><img src="15.png" class="chakra-btn" alt="Garganta"></div>
+            <div class="chakra-btn-container"><span class="label-nav">Tercer Ojo</span><img src="16.png" class="chakra-btn" alt="Tercer Ojo"></div>
+            <div class="chakra-btn-container"><span class="label-nav">Corona</span><img src="17.png" class="chakra-btn" alt="Corona"></div>
         </div>
     </nav>
 
@@ -128,44 +137,41 @@
             <h1>Bienvenida/o a tu Templo</h1>
             <p class="concepto-camino">iReiki-dō: El Reiki en mi camino</p>
             <div class="chakras-main">
-                <div class="chakra-main-item-wrapper"><span class="label-main">Raíz</span><img src="11.png" class="chakra-main-item" onclick="document.getElementById('section-historia').scrollIntoView()"></div>
-                <div class="chakra-main-item-wrapper"><span class="label-main">Sacro</span><img src="12.png" class="chakra-main-item"></div>
-                <div class="chakra-main-item-wrapper"><span class="label-main">Plexo</span><img src="13.png" class="chakra-main-item"></div>
-                <div class="chakra-main-item-wrapper"><span class="label-main">Corazón</span><img src="14.png" class="chakra-main-item"></div>
-                <div class="chakra-main-item-wrapper"><span class="label-main">Garganta</span><img src="15.png" class="chakra-main-item"></div>
-                <div class="chakra-main-item-wrapper"><span class="label-main">Tercer Ojo</span><img src="16.png" class="chakra-main-item"></div>
-                <div class="chakra-main-item-wrapper"><span class="label-main">Corona</span><img src="17.png" class="chakra-main-item"></div>
+                <div class="chakra-main-item-wrapper"><span class="label-main">Raíz</span><img src="11.png" class="chakra-main-item" alt="Raíz" onclick="document.getElementById('section-historia').scrollIntoView()"></div>
+                <div class="chakra-main-item-wrapper"><span class="label-main">Sacro</span><img src="12.png" class="chakra-main-item" alt="Sacro"></div>
+                <div class="chakra-main-item-wrapper"><span class="label-main">Plexo</span><img src="13.png" class="chakra-main-item" alt="Plexo"></div>
+                <div class="chakra-main-item-wrapper"><span class="label-main">Corazón</span><img src="14.png" class="chakra-main-item" alt="Corazón"></div>
+                <div class="chakra-main-item-wrapper"><span class="label-main">Garganta</span><img src="15.png" class="chakra-main-item" alt="Garganta"></div>
+                <div class="chakra-main-item-wrapper"><span class="label-main">Tercer Ojo</span><img src="16.png" class="chakra-main-item" alt="Tercer Ojo"></div>
+                <div class="chakra-main-item-wrapper"><span class="label-main">Corona</span><img src="17.png" class="chakra-main-item" alt="Corona"></div>
             </div>
         </div>
     </section>
 
     <section class="historia" id="section-historia">
-        <img src="dai-ko-myo.png" class="reiki-anim simbolo-sup">
-        <img src="cho-ku-rei.png" class="reiki-anim simbolo-inf">
-        <img src="sei-he-ki.png" class="reiki-anim simbolo-izq">
-        <img src="hon-sha.png" class="reiki-anim simbolo-der">
+        <img src="dai-ko-myo.png" class="reiki-anim simbolo-sup" alt="Símbolo Reiki">
+        <img src="cho-ku-rei.png" class="reiki-anim simbolo-inf" alt="Símbolo Reiki">
+        <img src="sei-he-ki.png" class="reiki-anim simbolo-izq" alt="Símbolo Reiki">
+        <img src="hon-sha.png" class="reiki-anim simbolo-der" alt="Símbolo Reiki">
         <p>"En iReiki-dō, transformamos nuestra experiencia personal en un refugio para ti. Somos Kike y Silvia, y este es el espacio donde tu evolución energética comienza."</p>
     </section>
 
     <div class="btn-antigravedad" id="btn-up" onclick="window.scrollTo(0,0)">↑</div>
 
     <script>
-        const navFlotante = document.getElementById('nav-flotante');
-        const btnUp = document.getElementById('btn-up');
-        const sectionHistoria = document.getElementById('section-historia');
-
-        // Control de aparición por Scroll
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 350) {
-                navFlotante.classList.add('visible');
-                btnUp.classList.add('visible');
+            const nav = document.getElementById('nav-flotante');
+            const btnSubir = document.getElementById('btn-up');
+            
+            if (window.scrollY > 400) {
+                if(nav) nav.classList.add('visible');
+                if(btnSubir) btnSubir.classList.add('visible');
             } else {
-                navFlotante.classList.remove('visible');
-                btnUp.classList.remove('visible');
+                if(nav) nav.classList.remove('visible');
+                if(btnSubir) btnSubir.classList.remove('visible');
             }
         });
 
-        // Animación de símbolos al entrar en la sección historia
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -174,7 +180,8 @@
             });
         }, { threshold: 0.2 });
 
-        observer.observe(sectionHistoria);
+        const section = document.getElementById('section-historia');
+        if(section) observer.observe(section);
     </script>
 </body>
 </html>

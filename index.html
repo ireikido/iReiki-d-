@@ -158,20 +158,35 @@
 
     <div class="btn-antigravedad" id="btn-up" onclick="window.scrollTo(0,0)">↑</div>
 
-    <script>
-        window.addEventListener('scroll', () => {
+        <script>
+        // Función principal de control de visibilidad
+        function controlScroll() {
             const nav = document.getElementById('nav-flotante');
             const btnSubir = document.getElementById('btn-up');
             
-            if (window.scrollY > 400) {
-                if(nav) nav.classList.add('visible');
+            // Solo se activa si bajamos más de 500 píxeles
+            if (window.scrollY > 500) {
+                if(nav) {
+                    nav.classList.add('visible');
+                    nav.style.pointerEvents = 'auto'; // Activa clics
+                }
                 if(btnSubir) btnSubir.classList.add('visible');
             } else {
-                if(nav) nav.classList.remove('visible');
+                if(nav) {
+                    nav.classList.remove('visible');
+                    nav.style.pointerEvents = 'none'; // Desactiva clics para evitar estorbar
+                }
                 if(btnSubir) btnSubir.classList.remove('visible');
             }
-        });
+        }
 
+        // Escuchar el evento de scroll
+        window.addEventListener('scroll', controlScroll);
+        
+        // Ejecutar una vez al cargar por si la página ya está abajo
+        window.addEventListener('load', controlScroll);
+
+        // Animación de símbolos al entrar en la sección historia
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {

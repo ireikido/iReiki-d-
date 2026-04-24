@@ -26,66 +26,69 @@
         .lang-btn { cursor: pointer; opacity: 0.3; transition: 0.4s; margin-left: 15px; text-transform: uppercase; }
         .lang-btn.active { opacity: 1; font-weight: bold; border-bottom: 1px solid var(--color-acento); }
 
-        /* NAVEGACIÓN LATERAL X2 (Solo aparece al scroll) */
+        /* NAVEGACIÓN LATERAL DERECHA (Aparece con Scroll) */
         .nav-flotante {
-            position: fixed; top: 100px; right: 40px;
+            position: fixed; top: 80px; right: 40px;
             display: flex; flex-direction: column; align-items: center;
-            z-index: 1000; opacity: 0; transition: 0.8s ease-in-out; pointer-events: none;
+            z-index: 1000; opacity: 0; transform: translateX(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
         }
-        .nav-flotante.visible { opacity: 1; pointer-events: auto; }
-        .logo-mini { width: 100px; cursor: pointer; margin-bottom: 30px; } 
+        .nav-flotante.visible { opacity: 1; transform: translateX(0); pointer-events: auto; }
+        .logo-mini { width: 90px; cursor: pointer; margin-bottom: 25px; transition: 0.5s; } 
         
-        .chakras-nav { display: flex; flex-direction: column; gap: 20px; }
+        .chakras-nav { display: flex; flex-direction: column; gap: 15px; }
         .chakra-btn-container { position: relative; display: flex; align-items: center; justify-content: flex-end; }
-        .chakra-btn { width: 60px; cursor: pointer; opacity: 0.4; transition: 0.4s; filter: grayscale(100%); } 
+        .chakra-btn { width: 55px; cursor: pointer; opacity: 0.3; transition: 0.4s; filter: grayscale(100%); } 
         .chakra-btn:hover { opacity: 1; transform: scale(1.1); filter: grayscale(0); }
-        .label-nav { position: absolute; right: 75px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; opacity: 0; transition: 0.3s; white-space: nowrap; color: var(--color-acento); }
+        .label-nav { position: absolute; right: 70px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; opacity: 0; transition: 0.3s; white-space: nowrap; color: var(--color-acento); pointer-events: none; }
         .chakra-btn-container:hover .label-nav { opacity: 1; }
 
-        /* HERO SECTION & LATIDO LENTO */
+        /* HERO SECTION & LATIDO (12s) */
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 10; }
         .templo-central { display: flex; flex-direction: column; align-items: center; text-align: center; }
         .logo-container { 
             max-width: 440px; width: 60vw; 
-            animation: breathe 8s infinite ease-in-out; 
+            animation: breathe 12s infinite ease-in-out; 
             margin-bottom: 20px; 
         }
         @keyframes breathe { 
-            0%, 100% { transform: scale(1); } 
-            50% { transform: scale(1.03); } 
+            0%, 100% { transform: scale(1); opacity: 1; } 
+            50% { transform: scale(1.04); opacity: 0.9; } 
         }
         
-        h1 { font-weight: 300; letter-spacing: 12px; text-transform: uppercase; font-size: 1.5rem; margin: 20px 0 10px 0; }
-        .concepto-camino { font-size: 0.9rem; color: var(--color-acento); letter-spacing: 4px; margin-bottom: 60px; }
+        h1 { font-weight: 300; letter-spacing: 12px; text-transform: uppercase; font-size: 1.4rem; margin: 20px 0 10px 0; }
+        .concepto-camino { font-size: 0.85rem; color: var(--color-acento); letter-spacing: 4px; margin-bottom: 50px; }
 
         /* CHAKRAS INFERIORES */
-        .chakras-main { display: flex; gap: 25px; margin-top: 20px; }
+        .chakras-main { display: flex; gap: 20px; margin-top: 10px; }
         .chakra-main-item-wrapper { position: relative; display: flex; flex-direction: column; align-items: center; }
-        .chakra-main-item { width: 80px; filter: grayscale(100%); opacity: 0.2; transition: 0.5s; cursor: pointer; }
-        .chakra-main-item:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
-        .label-main { position: absolute; top: -30px; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0; transition: 0.3s; color: var(--color-acento); }
+        .chakra-main-item { width: 75px; filter: grayscale(100%); opacity: 0.2; transition: 0.6s; cursor: pointer; }
+        .chakra-main-item:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.15); }
+        .label-main { position: absolute; top: -35px; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; opacity: 0; transition: 0.4s; color: var(--color-acento); white-space: nowrap; }
         .chakra-main-item-wrapper:hover .label-main { opacity: 1; }
 
-        /* SECCIÓN HISTORIA Y SÍMBOLOS */
-        .historia { min-height: 120vh; display: flex; align-items: center; justify-content: center; position: relative; padding: 100px 0; }
-        .historia p { font-size: 1.7rem; line-height: 2.3; font-style: italic; text-align: center; max-width: 900px; padding: 0 50px; z-index: 5; font-weight: 300; }
+        /* SECCIÓN HISTORIA */
+        .historia { min-height: 110vh; display: flex; align-items: center; justify-content: center; position: relative; padding: 100px 0; }
+        .historia p { font-size: 1.6rem; line-height: 2.2; font-style: italic; text-align: center; max-width: 850px; padding: 0 50px; z-index: 5; font-weight: 300; }
         
-        .reiki-anim { position: absolute; top: 50%; left: 50%; width: 140px; opacity: 0; transition: 2.5s ease-out; transform: translate(-50%, -50%); pointer-events: none; }
-        .historia.visible .simbolo-sup { opacity: 0.12; transform: translate(-50%, -400px); }
-        .historia.visible .simbolo-inf { opacity: 0.12; transform: translate(-50%, 280px); }
-        .historia.visible .simbolo-izq { opacity: 0.06; transform: translate(-550px, -50%); }
-        .historia.visible .simbolo-der { opacity: 0.06; transform: translate(450px, -50%); }
+        /* SÍMBOLOS DINÁMICOS */
+        .reiki-anim { position: absolute; top: 50%; left: 50%; width: 140px; opacity: 0; transition: 3s ease-out; transform: translate(-50%, -50%); pointer-events: none; }
+        .historia.visible .simbolo-sup { opacity: 0.1; transform: translate(-50%, -380px); }
+        .historia.visible .simbolo-inf { opacity: 0.1; transform: translate(-50%, 260px); }
+        .historia.visible .simbolo-izq { opacity: 0.05; transform: translate(-500px, -50%); }
+        .historia.visible .simbolo-der { opacity: 0.05; transform: translate(400px, -50%); }
 
         /* BOTÓN SUBIR */
         .btn-antigravedad {
-            position: fixed; bottom: 30px; right: 30px;
-            width: 50px; height: 50px; border-radius: 50%;
+            position: fixed; bottom: 30px; left: 30px;
+            width: 45px; height: 45px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            cursor: pointer; opacity: 0; transition: 0.4s;
-            border: 1px solid var(--color-texto); background: rgba(252, 249, 242, 0.8);
-            z-index: 1200; pointer-events: none;
+            cursor: pointer; opacity: 0; transition: 0.5s;
+            border: 1px solid var(--color-acento); background: rgba(252, 249, 242, 0.9);
+            z-index: 1200; pointer-events: none; font-size: 1.2rem;
         }
-        .btn-antigravedad.visible { opacity: 0.3; pointer-events: auto; }
+        .btn-antigravedad.visible { opacity: 0.4; pointer-events: auto; }
     </style>
 </head>
 <body>
@@ -111,10 +114,9 @@
 
     <section class="hero">
         <div class="templo-central">
-            <div class="logo-container"><img src="2.png" style="width:100%"></div>
+            <div class="logo-container"><img src="2.png" style="width:100%" alt="Logo iReiki-do"></div>
             <h1>Bienvenida/o a tu Templo</h1>
             <p class="concepto-camino">iReiki-dō: El Reiki en mi camino</p>
-            
             <div class="chakras-main">
                 <div class="chakra-main-item-wrapper"><span class="label-main">Raíz</span><img src="11.png" class="chakra-main-item" onclick="document.getElementById('section-historia').scrollIntoView()"></div>
                 <div class="chakra-main-item-wrapper"><span class="label-main">Sacro</span><img src="12.png" class="chakra-main-item"></div>
@@ -142,23 +144,25 @@
         const btnUp = document.getElementById('btn-up');
         const sectionHistoria = document.getElementById('section-historia');
 
-        window.onscroll = function() {
-            if (window.scrollY > 400) {
+        // Control de aparición por Scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 350) {
                 navFlotante.classList.add('visible');
                 btnUp.classList.add('visible');
             } else {
                 navFlotante.classList.remove('visible');
                 btnUp.classList.remove('visible');
             }
-        };
+        });
 
+        // Animación de símbolos al entrar en la sección historia
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.2 });
 
         observer.observe(sectionHistoria);
     </script>

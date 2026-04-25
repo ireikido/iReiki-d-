@@ -21,11 +21,6 @@
             overflow-x: hidden;
         }
 
-        /* FILTRO LOGO TONO TIERRA - ÚNICO CAMBIO */
-        .filtro-tierra {
-            filter: sepia(1) saturate(0.5) hue-rotate(10deg) brightness(0.7) contrast(0.8);
-        }
-
         /* IDIOMAS */
         .lang-picker { position: fixed; top: 30px; right: 40px; font-size: 0.8rem; letter-spacing: 3px; z-index: 1100; }
         .lang-btn { cursor: pointer; opacity: 0.3; transition: 0.4s; margin-left: 15px; text-transform: uppercase; }
@@ -96,7 +91,7 @@
     </div>
 
     <nav class="nav-flotante" id="nav-flotante">
-        <img src="2.png" class="logo-mini filtro-tierra" alt="Inicio" onclick="window.scrollTo(0,0)">
+        <img src="2.png" class="logo-mini" alt="Inicio" onclick="window.scrollTo(0,0)">
         <div class="chakras-nav">
             <img src="11.png" class="chakra-btn" onclick="document.getElementById('section-historia').scrollIntoView()">
             <img src="12.png" class="chakra-btn">
@@ -110,7 +105,7 @@
 
     <section class="hero">
         <div class="templo-central">
-            <div class="logo-container"><img src="2.png" class="filtro-tierra" style="width:100%" alt="Logo iReiki-do"></div>
+            <div class="logo-container"><img src="2.png" style="width:100%" alt="Logo iReiki-do"></div>
             <h1>Bienvenida/o a tu Templo</h1>
             <p class="concepto-camino">iReiki-dō: El Reiki en mi camino</p>
             <div class="chakras-main">
@@ -148,6 +143,7 @@
             }
         }
         window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
